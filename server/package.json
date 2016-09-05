@@ -1,0 +1,14 @@
+{
+  "name": "makenode-server",
+  "version": "0.0.0",
+  "dependencies": {
+    "buffer-equal-constant-time": "^1.0.1",
+    "minimist": "^1.2.0",
+    "ndjson": "^1.4.3",
+    "ssh2": "^0.5.1"
+  },
+  "scripts": {
+    "start": "bin/cmd.js"
+  },
+  "license": "AGPL-1.0"
+}

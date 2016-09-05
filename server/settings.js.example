@@ -1,0 +1,11 @@
+
+module.exports = {
+               
+  keys: {
+    private: 'keys/id_rsa',
+    public: 'keys/id_rsa.pub'
+  },
+
+  port: 2222
+
+};
