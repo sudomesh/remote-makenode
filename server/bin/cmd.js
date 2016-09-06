@@ -37,8 +37,12 @@ function Client(client, session) {
     this.session.on('exec', function(accept, reject, info) {
         var m;
         console.log("got command:", info.command);
-        if(m = info.command.match(/^makenode/)) {
+        if(m = info.command.match(/^makenode ([A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2})/)) {
+            var mac = m[1];
+
             var stream = accept();
+
+            console.log("mac:", mac);
 
             log("got makenode command");
         } else {
