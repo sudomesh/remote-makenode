@@ -6,7 +6,18 @@ REMOTE_USERNAME="mesher"
 REMOTE_COMMAND="makenode"
 IPK_OUTPUT="/tmp/makenode.ipk"
 
-CMD="$SSH_CMD -K 10 -I 30 -i $CLIENT_KEY -l $REMOTE_USERNAME -p $SERVER_PORT $SERVER_HOSTNAME $REMOTE_COMMAND > $IPK_OUTPUT"
+KEEPALIVE="5"
+TIMEOUT="10"
+TIMEOUT_OPENSSH="2" # same as timeout but expressed in multiples of KEEPALIVE
+
+if [ "$CLIENT_TYPE" = "dropbear" ]; then
+    CMD="$SSH_CMD -K $KEEPALIVE -I $TIMEMOUT -i $CLIENT_KEY -l $REMOTE_USERNAME -p $SERVER_PORT $SERVER_HOSTNAME $REMOTE_COMMAND"
+elif [ "$CLIENT_TYPE" = "openssh" ]; then
+    CMD="$SSH_CMD -o ServerAliveInterval=$KEEPALIVE -o ServerAliveCountMax=$TIMEOUT_OPENSSH -i $CLIENT_KEY -l $REMOTE_USERNAME -p $SERVER_PORT $SERVER_HOSTNAME $REMOTE_COMMAND"
+else
+  echo "Wrong CLIENT_TYPE '${CLIENT_TYPE}'" >&2
+  exit 1
+fi
 
 # dropbear client checks this file and it is hard-coded :/
 KNOWN_HOSTS_FILE=~/.ssh/known_hosts
@@ -30,8 +41,8 @@ fi
 echo "Connecting to $SERVER_HOSTNAME on port $SERVER_PORT"
 while : 
 do
-  echo $CMD
-  echo '{"type": "ipk_request"}' | $CMD
+#  echo $CMD
+  echo '{"type": "ipk_request"}' | $CMD > $IPK_OUTPUT
   if [ "$?" -eq "0" ]; then
     break
   fi

@@ -8,4 +8,4 @@ Client is written as a shell script that calls the dropbear client.
 
 Server is a node.js app that uses the node ssh2 module and matches the client based on MAC address.
 
-Currently [a bug in ssh2](https://github.com/mscdex/ssh2/issues/463) prevents the server from working.
+Currently [a bug in ssh2](https://github.com/mscdex/ssh2/issues/463) prevents the server from working when the client is dropbear.

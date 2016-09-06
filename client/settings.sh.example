@@ -1,13 +1,15 @@
 
 
-#SSH_CMD="ssh" # Use this for openwrt
-#SSH_CMD="dbclient" # Use this when testing on full GNU/Linux system
 
-SSH_CMD="../dropbear-2015.67/dbclient"
+SSH_CMD="ssh"
+#SSH_CMD="dbclient"
 
 SERVER_KEY_FILE="keys/server.pub"
 
-SERVER_HOSTNAME="127.0.0.1"
+SERVER_HOSTNAME="localhost"
 SERVER_PORT="2222"
 
 CLIENT_KEY="keys/client"
+
+#CLIENT_TYPE="dropbear"
+CLIENT_TYPE="openssh"

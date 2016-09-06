@@ -16,7 +16,7 @@ function logError(str) {
     console.error(str);
 }
 
-/*
+
 var clients = {};
 
 function Client(client, session) {
@@ -69,7 +69,7 @@ function Client(client, session) {
     };
 
 }
-*/
+
 var makenodeServer = {
 
     start: function(settings, opts, cb) {
@@ -87,7 +87,7 @@ var makenodeServer = {
         }, function(client) {
             log('client connected!');
 
-/*
+
             client.on('error', function(err) {
                 log('error:', err);
             });
@@ -118,7 +118,7 @@ var makenodeServer = {
             client.on('end', function() {
                 log("client disconnected");
             });
-*/
+
             
         });
 
